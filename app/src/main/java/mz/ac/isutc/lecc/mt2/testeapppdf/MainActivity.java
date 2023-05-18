@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         FirebaseRecyclerOptions<FileModel> options = new FirebaseRecyclerOptions.Builder<FileModel>()
-                .setQuery(FirebaseDatabase.getInstance().getReference().child("mydocuments"),FileModel.class)
+                .setQuery(FirebaseDatabase.getInstance().getReference().child("MyDocments"),FileModel.class)
                 .build();
 
         adapter = new Myadapter(options);

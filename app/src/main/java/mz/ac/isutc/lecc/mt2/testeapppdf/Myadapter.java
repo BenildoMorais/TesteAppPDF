@@ -50,6 +50,8 @@ public class Myadapter extends FirebaseRecyclerAdapter<FileModel, Myadapter.myvi
 
         public myviewholder(@NonNull View itemView) {
             super(itemView);
+            titulo = itemView.findViewById(R.id.titulo);
+            imagem = itemView.findViewById(R.id.imagem);
         }
     }
 }

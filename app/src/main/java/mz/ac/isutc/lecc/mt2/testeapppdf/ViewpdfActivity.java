@@ -7,6 +7,11 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Toast;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URL;
+import java.net.URLEncoder;
 
 import mz.ac.isutc.lecc.mt2.testeapppdf.databinding.ActivityViewpdfBinding;
 
@@ -19,7 +24,7 @@ public class ViewpdfActivity extends AppCompatActivity {
         binding = ActivityViewpdfBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-
+        binding.viewpdf.getSettings().getJavaScriptEnabled(); // ...um parametro true
         String filename = getIntent().getStringExtra("filename");
         String fileurl = getIntent().getStringExtra("fileurl");
 
@@ -41,5 +46,14 @@ public class ViewpdfActivity extends AppCompatActivity {
             }
         });
 
+        String url = "";
+        try {
+            url = URLEncoder.encode(fileurl, "UTF-8");
+        }catch (UnsupportedEncodingException e){
+            Toast.makeText(this, "URLEncoder", Toast.LENGTH_SHORT).show();
+        }
+        binding.viewpdf.loadUrl("http://docs.google.com/gview?embedded=true&url=" + url);
+
     }
+
 }
