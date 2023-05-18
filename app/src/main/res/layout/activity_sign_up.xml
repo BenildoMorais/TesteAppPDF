@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".LoginActivity">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/pdf_icon"
+        android:layout_marginVertical="5dp"
+        android:contentDescription="TODO" />
+
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Username"
+        android:inputType="text"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginVertical="5dp"
+        android:background="@drawable/edit_text_background"
+        android:padding="15dp"
+        />
+
+    <EditText
+        android:id="@+id/disciplina"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Disciplina"
+        android:inputType="text"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginVertical="5dp"
+        android:background="@drawable/edit_text_background"
+        android:padding="15dp"
+        />
+
+    <EditText
+        android:id="@+id/telefone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Telefone"
+        android:inputType="number"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginVertical="5dp"
+        android:background="@drawable/edit_text_background"
+        android:padding="15dp"
+        />
+
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginVertical="5dp"
+        android:background="@drawable/edit_text_background"
+        android:padding="15dp"
+        />
+
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginVertical="5dp"
+        android:background="@drawable/edit_text_background"
+        android:padding="15dp"
+        />
+
+    <Button
+        android:id="@+id/bt_registrar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="18dp"
+        android:text="Registrar e entrar"
+        android:padding="10dp"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginVertical="5dp"
+        android:background="@drawable/button_background"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Se deseja se registra como um professor?"
+        android:layout_marginLeft="25dp"
+        />
+
+
+</LinearLayout>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/pdf_row_background"
+    android:orientation="horizontal"
+    android:padding="16dp"
+    android:layout_margin="2dp">
+
+    <ImageView
+        android:id="@+id/imagem"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:src="@drawable/pdf_list_icon" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/titulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:text="Titulo" />
+
+        <TextView
+            android:id="@+id/disciplina"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:text="Disciplina" />
+
+        <TextView
+            android:id="@+id/username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:text="Username" />
+
+    </LinearLayout>
+
+</LinearLayout>

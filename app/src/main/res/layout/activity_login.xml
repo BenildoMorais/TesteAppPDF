@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".LoginActivity">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/pdf_icon"
+        android:layout_marginVertical="10dp"
+        />
+
+
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginVertical="5dp"
+        android:background="@drawable/edit_text_background"
+        android:padding="15dp"
+        />
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginVertical="5dp"
+        android:background="@drawable/edit_text_background"
+        android:padding="15dp"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginVertical="5dp"
+        android:layout_marginHorizontal="30dp">
+
+        <Button
+            android:id="@+id/bt_entrar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Entrar"
+            android:paddingVertical="10dp"
+            android:paddingHorizontal="30dp"
+            android:layout_marginEnd="5dp"
+            android:background="@drawable/button_background"/>
+
+        <Button
+            android:id="@+id/bt_registrar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Registrar-se"
+            android:paddingVertical="10dp"
+            android:layout_marginEnd="5dp"
+            android:background="@drawable/button_background"
+            />
+
+    </LinearLayout>
+
+
+</LinearLayout>
