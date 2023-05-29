@@ -5,7 +5,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,7 +24,7 @@ public class Myadapter extends FirebaseRecyclerAdapter<FileModel, Myadapter.myvi
     @Override
     protected void onBindViewHolder(@NonNull myviewholder holder, int position, @NonNull FileModel model) {
         holder.titulo.setText(model.getFileName());
-        holder.imagem.setOnClickListener(new View.OnClickListener() {
+        holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(holder.imagem.getContext(), ViewpdfActivity.class);
@@ -31,8 +33,14 @@ public class Myadapter extends FirebaseRecyclerAdapter<FileModel, Myadapter.myvi
 
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 holder.imagem.getContext().startActivity(intent);
+
             }
         });
+    }
+
+    @Override
+    public int getItemCount() {
+        return super.getItemCount();
     }
 
     @NonNull
@@ -47,11 +55,13 @@ public class Myadapter extends FirebaseRecyclerAdapter<FileModel, Myadapter.myvi
 
         ImageView imagem;
         TextView titulo, disciplina, username;
+        LinearLayout layout;
 
         public myviewholder(@NonNull View itemView) {
             super(itemView);
             titulo = itemView.findViewById(R.id.titulo);
             imagem = itemView.findViewById(R.id.imagem);
+            layout = itemView.findViewById(R.id.row);
         }
     }
 }

@@ -94,13 +94,13 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="25dp"
         android:layout_marginTop="10dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:id="@+id/tipo_user">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Se deseja se registra como um professor?"
-            android:id="@+id/tipo_user"
+            android:text="Deseja se registra como um professor?"
             />
         <TextView
             android:layout_width="wrap_content"

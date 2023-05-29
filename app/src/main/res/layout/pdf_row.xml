@@ -5,6 +5,7 @@
     android:background="@drawable/pdf_row_background"
     android:orientation="horizontal"
     android:padding="16dp"
+    android:id="@+id/row"
     android:layout_margin="2dp">
 
     <ImageView

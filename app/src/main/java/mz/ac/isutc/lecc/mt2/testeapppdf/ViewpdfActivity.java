@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.view.WindowManager;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
@@ -24,7 +25,7 @@ public class ViewpdfActivity extends AppCompatActivity {
         binding = ActivityViewpdfBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        binding.viewpdf.getSettings().getJavaScriptEnabled(); // ...um parametro true
+        binding.viewpdf.getSettings().setJavaScriptEnabled(true); // ...um parametro true
         String filename = getIntent().getStringExtra("filename");
         String fileurl = getIntent().getStringExtra("fileurl");
 
@@ -36,7 +37,12 @@ public class ViewpdfActivity extends AppCompatActivity {
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
                 super.onPageStarted(view, url, favicon);
-                pd.show();
+                try {
+                    pd.show();
+                }catch (Exception e){
+                    Toast.makeText(ViewpdfActivity.this, "Verifique a sua Internet", Toast.LENGTH_SHORT).show();
+                }
+
             }
 
             @Override
