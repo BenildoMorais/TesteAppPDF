@@ -100,7 +100,7 @@ public class SignUpActivity extends AppCompatActivity {
                             UserProfileChangeRequest userProfileChangeRequest = new UserProfileChangeRequest.Builder().setDisplayName(username).build();
                             FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
                             firebaseUser.updateProfile(userProfileChangeRequest);
-                            UsuarioPofessor usuarioPofessor = new UsuarioPofessor(FirebaseAuth.getInstance().getUid(), username, disciplina, numero, email, password);
+                            UsuarioPofessor usuarioPofessor = new UsuarioPofessor(FirebaseAuth.getInstance().getUid(), username, email, password, disciplina, numero);
                             databaseReference.child(FirebaseAuth.getInstance().getUid()).setValue(usuarioPofessor);
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
                             finish();

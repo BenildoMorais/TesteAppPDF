@@ -116,7 +116,7 @@ public class UploadActivity extends AppCompatActivity {
                         reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                             @Override
                             public void onSuccess(Uri uri) {
-                                FileModel controle = new FileModel(binding.titulo.getText().toString(), uri.toString(),"NomeDefault","DisciplinaDefault");
+                                FileModel controle = new FileModel(binding.titulo.getText().toString(), uri.toString(),getIntent().getStringExtra("username"),getIntent().getStringExtra("disciplina"));
                                 databaseReference.child(databaseReference.push().getKey()).setValue(controle);
                                 dp.dismiss();
                                 Toast.makeText(UploadActivity.this, "File Uploaded", Toast.LENGTH_SHORT).show();

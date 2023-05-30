@@ -28,8 +28,8 @@ public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
      private Myadapter adapter;
-
-    DatabaseReference databaseReference;
+     private UsuarioPofessor controle;
+    private DatabaseReference databaseReference;
 
     @Override
 
@@ -47,11 +47,11 @@ public class MainActivity extends AppCompatActivity {
                     Log.e("firebase", "Error getting data", task.getException());
                 }
                 else {
-                    UsuarioPofessor controle = task.getResult().getValue(UsuarioPofessor.class);
+                    controle = task.getResult().getValue(UsuarioPofessor.class);
                     try {
                         controle.getDisciplina().equals(""); // controla o tipo de usuario e o tipo de privilegios
+                        binding.AdicionarPDF.setVisibility(View.VISIBLE);
                     }catch (NullPointerException e){
-                        binding.AdicionarPDF.setVisibility(View.GONE);
                         Usuario usuario = (Usuario) controle;
                     }
                 }
@@ -63,7 +63,12 @@ public class MainActivity extends AppCompatActivity {
         binding.AdicionarPDF.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), UploadActivity.class));
+                Intent intent = new Intent(getApplicationContext(), UploadActivity.class);
+                Log.d("teste",controle.getDisciplina());
+                intent.putExtra("disciplina", controle.getDisciplina());
+                intent.putExtra("telefone", controle.getTelefone());
+                intent.putExtra("username", controle.getUserName());
+                startActivity(intent);
             }
         });
 

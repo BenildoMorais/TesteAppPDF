@@ -25,6 +25,8 @@ public class Myadapter extends FirebaseRecyclerAdapter<FileModel, Myadapter.myvi
     @Override
     protected void onBindViewHolder(@NonNull myviewholder holder, int position, @NonNull FileModel model) {
         holder.titulo.setText(model.getFileName());
+        holder.disciplina.setText(model.getDisciplina());
+        holder.username.setText(model.getUsername());
         holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -63,6 +65,8 @@ public class Myadapter extends FirebaseRecyclerAdapter<FileModel, Myadapter.myvi
             titulo = itemView.findViewById(R.id.titulo);
             imagem = itemView.findViewById(R.id.imagem);
             layout = itemView.findViewById(R.id.row);
+            disciplina = itemView.findViewById(R.id.disciplina);
+            username = itemView.findViewById(R.id.username);
         }
     }
 }
