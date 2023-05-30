@@ -50,7 +50,11 @@ public class ViewpdfActivity extends AppCompatActivity {
             @Override
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
-                pd.dismiss();
+                try {
+                    pd.dismiss();
+                }catch (IllegalArgumentException e){
+                    finish();
+                }
             }
         });
 

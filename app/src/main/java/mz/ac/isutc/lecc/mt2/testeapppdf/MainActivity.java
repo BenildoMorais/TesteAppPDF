@@ -7,9 +7,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -32,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
     private DatabaseReference databaseReference;
 
     @Override
-
     protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
 
@@ -40,23 +40,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
-        databaseReference.child("users").child(FirebaseAuth.getInstance().getUid()).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                if (!task.isSuccessful()) {
-                    Log.e("firebase", "Error getting data", task.getException());
-                }
-                else {
-                    controle = task.getResult().getValue(UsuarioPofessor.class);
-                    try {
-                        controle.getDisciplina().equals(""); // controla o tipo de usuario e o tipo de privilegios
-                        binding.AdicionarPDF.setVisibility(View.VISIBLE);
-                    }catch (NullPointerException e){
-                        Usuario usuario = (Usuario) controle;
-                    }
-                }
-            }
-        });
+
+        verification();
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
@@ -64,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), UploadActivity.class);
-                Log.d("teste",controle.getDisciplina());
                 intent.putExtra("disciplina", controle.getDisciplina());
                 intent.putExtra("telefone", controle.getTelefone());
                 intent.putExtra("username", controle.getUserName());
@@ -83,6 +67,45 @@ public class MainActivity extends AppCompatActivity {
         binding.recyclerView.setAdapter(adapter);
     }
 
+    private void verification() {
+        databaseReference.child("users").child(FirebaseAuth.getInstance().getUid()).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (!task.isSuccessful()) {
+                    Log.e("firebase", "Error getting data", task.getException());
+                }
+                else {
+                    controle = task.getResult().getValue(UsuarioPofessor.class);
+                    try {
+                        controle.getDisciplina().equals(""); // controla o tipo de usuario e o tipo de privilegios
+                        binding.AdicionarPDF.setVisibility(View.VISIBLE);
+                    }catch (NullPointerException e){
+                        Usuario usuario = (Usuario) controle;
+                    }
+                }
+            }
+        });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_bar, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        int id = item.getItemId();
+
+        if (id == R.id.logout){
+            FirebaseAuth.getInstance().signOut();
+            startActivity(new Intent(MainActivity.this, LoginActivity.class));
+            finish();
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     protected void onStart() {
