@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -24,10 +25,10 @@ import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionDeniedResponse;
 import com.karumi.dexter.listener.PermissionGrantedResponse;
 import com.karumi.dexter.listener.PermissionRequest;
-import com.karumi.dexter.listener.single.BasePermissionListener;
 import com.karumi.dexter.listener.single.PermissionListener;
 
 import mz.ac.isutc.lecc.mt2.testeapppdf.databinding.ActivityUpload2Binding;
+import mz.ac.isutc.lecc.mt2.testeapppdf.models.FileModel;
 
 public class UploadActivity extends AppCompatActivity {
 
@@ -43,6 +44,9 @@ public class UploadActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityUpload2Binding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        // getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
 
         storageReference = FirebaseStorage.getInstance().getReference();
         databaseReference = FirebaseDatabase.getInstance().getReference("MyDocments");

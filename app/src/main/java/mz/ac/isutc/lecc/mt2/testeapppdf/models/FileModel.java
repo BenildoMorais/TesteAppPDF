@@ -1,4 +1,4 @@
-package mz.ac.isutc.lecc.mt2.testeapppdf;
+package mz.ac.isutc.lecc.mt2.testeapppdf.models;
 
 public class FileModel {
     private String fileName, fileUrl, username, disciplina;

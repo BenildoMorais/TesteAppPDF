@@ -25,6 +25,8 @@ public class ViewpdfActivity extends AppCompatActivity {
         binding = ActivityViewpdfBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+       // getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         binding.viewpdf.getSettings().setJavaScriptEnabled(true); // ...um parametro true
         String filename = getIntent().getStringExtra("filename");
         String fileurl = getIntent().getStringExtra("fileurl");

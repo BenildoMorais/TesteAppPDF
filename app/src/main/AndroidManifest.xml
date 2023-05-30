@@ -18,14 +18,6 @@
             android:name=".ViewpdfActivity"
             android:exported="false" />
         <activity
-            android:name=".viewpdf"
-            android:exported="false"
-            android:label="@string/title_activity_viewpdf"
-            android:theme="@style/Theme.TesteAppPDF.NoActionBar" />
-        <activity
-            android:name=".LeituraActivity"
-            android:exported="false" />
-        <activity
             android:name=".SignUpActivity"
             android:exported="false" />
         <activity
@@ -45,7 +37,8 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="false" />
+            android:exported="false"
+            />
     </application>
 
 </manifest>
