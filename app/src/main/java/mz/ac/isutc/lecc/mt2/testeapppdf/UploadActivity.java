@@ -130,7 +130,6 @@ public class UploadActivity extends AppCompatActivity {
                                 FileModel controle = new FileModel(id,binding.titulo.getText().toString(), uri.toString(),getIntent().getStringExtra("username"),getIntent().getStringExtra("disciplina"));
                                 databaseReference.child(id).setValue(controle);
                                 dp.dismiss();
-                                finish();
                                 Toast.makeText(UploadActivity.this, "File Uploaded", Toast.LENGTH_SHORT).show();
                             }
                         });

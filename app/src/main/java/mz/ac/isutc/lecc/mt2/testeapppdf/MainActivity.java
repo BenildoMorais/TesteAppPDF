@@ -29,7 +29,9 @@ public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
      private Myadapter adapter;
-     private UsuarioPofessor controle;
+     public static UsuarioPofessor controle;
+
+     private Usuario usuario;
     private DatabaseReference databaseReference;
 
     public static Boolean root; // Varialvel que controla o nivel de acesso
@@ -83,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
                         binding.AdicionarPDF.setVisibility(View.VISIBLE);
                         root = true;
                     }catch (NullPointerException e){
-                        Usuario usuario = (Usuario) controle;
+                        usuario = (Usuario) controle;
                         root = false;
                     }
                 }

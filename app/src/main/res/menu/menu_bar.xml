@@ -2,12 +2,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:title="Item"
-        android:id="@+id/item"/>
-    <item
-        android:title="Tranferir"
-        android:id="@+id/tranferir"/>
+        android:title="Detalhes"
+        android:id="@+id/detalhes"/>
     <item
         android:title="Logout"
         android:id="@+id/logout"/>
+    <item
+        android:title="Sobre"
+        android:id="@+id/sobre"/>
+
 </menu>

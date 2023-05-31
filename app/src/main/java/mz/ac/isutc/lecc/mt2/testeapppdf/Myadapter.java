@@ -65,13 +65,17 @@ public class Myadapter extends FirebaseRecyclerAdapter<FileModel, Myadapter.myvi
             public boolean onLongClick(View view) {
 
                 if (MainActivity.root){
-                    databaseReference.child("MyDocments").child(id).removeValue(new DatabaseReference.CompletionListener() {
-                        @Override
-                        public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
-                            storageReference.child("uploads/"+id+".pdf").delete();
-                            Toast.makeText(view.getContext(), "Apagado com sucesso", Toast.LENGTH_SHORT).show();
-                        }
-                    });
+                    if (model.getUsername().equals(MainActivity.controle.getUserName())){
+                        databaseReference.child("MyDocments").child(id).removeValue(new DatabaseReference.CompletionListener() {
+                            @Override
+                            public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
+                                storageReference.child("uploads/"+id+".pdf").delete();
+                                Toast.makeText(view.getContext(), "Apagado com sucesso", Toast.LENGTH_SHORT).show();
+                            }
+                        });   
+                    }else{
+                        Toast.makeText(view.getContext(), "Não tem permissão para apagar esse ficheiro", Toast.LENGTH_SHORT).show();
+                    }
                 }
                 return true;
             }
