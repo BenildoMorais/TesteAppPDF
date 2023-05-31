@@ -17,6 +17,9 @@
     <style name="Theme.TesteAppPDF.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="colorPrimary">@color/Vermelho</item>
+        <item name="colorPrimaryVariant">@color/Vermelho</item>
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
     </style>
 
     <style name="Theme.TesteAppPDF.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />

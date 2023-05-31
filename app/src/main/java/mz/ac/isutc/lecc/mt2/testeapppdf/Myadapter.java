@@ -1,22 +1,37 @@
 package mz.ac.isutc.lecc.mt2.testeapppdf;
 
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import mz.ac.isutc.lecc.mt2.testeapppdf.models.FileModel;
 
 public class Myadapter extends FirebaseRecyclerAdapter<FileModel, Myadapter.myviewholder> {
+
+    StorageReference storageReference;
+
+    DatabaseReference databaseReference;
+
+    private String id;
 
     public Myadapter(@NonNull FirebaseRecyclerOptions<FileModel> options) {
         super(options);
@@ -24,6 +39,11 @@ public class Myadapter extends FirebaseRecyclerAdapter<FileModel, Myadapter.myvi
 
     @Override
     protected void onBindViewHolder(@NonNull myviewholder holder, int position, @NonNull FileModel model) {
+
+        storageReference = FirebaseStorage.getInstance().getReference();
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+        id = model.getId();
+
         holder.titulo.setText(model.getFileName());
         holder.disciplina.setText(model.getDisciplina());
         holder.username.setText(model.getUsername());
@@ -37,6 +57,23 @@ public class Myadapter extends FirebaseRecyclerAdapter<FileModel, Myadapter.myvi
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 holder.imagem.getContext().startActivity(intent);
 
+            }
+        });
+        
+        holder.layout.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+
+                if (MainActivity.root){
+                    databaseReference.child("MyDocments").child(id).removeValue(new DatabaseReference.CompletionListener() {
+                        @Override
+                        public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
+                            storageReference.child("uploads/"+id+".pdf").delete();
+                            Toast.makeText(view.getContext(), "Apagado com sucesso", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+                return true;
             }
         });
     }

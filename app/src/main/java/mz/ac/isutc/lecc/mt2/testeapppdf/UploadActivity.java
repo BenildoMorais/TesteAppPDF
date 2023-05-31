@@ -117,7 +117,9 @@ public class UploadActivity extends AppCompatActivity {
         dp.setTitle("File Uploading...");
         dp.show();
 
-        final StorageReference reference = storageReference.child("uploads/"+System.currentTimeMillis()+".pdf");
+        String id = databaseReference.push().getKey();
+//        final StorageReference reference = storageReference.child("uploads/"+System.currentTimeMillis()+".pdf");
+        final StorageReference reference = storageReference.child("uploads/"+id+".pdf");
         reference.putFile(filepath)
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
@@ -125,9 +127,10 @@ public class UploadActivity extends AppCompatActivity {
                         reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                             @Override
                             public void onSuccess(Uri uri) {
-                                FileModel controle = new FileModel(binding.titulo.getText().toString(), uri.toString(),getIntent().getStringExtra("username"),getIntent().getStringExtra("disciplina"));
-                                databaseReference.child(databaseReference.push().getKey()).setValue(controle);
+                                FileModel controle = new FileModel(id,binding.titulo.getText().toString(), uri.toString(),getIntent().getStringExtra("username"),getIntent().getStringExtra("disciplina"));
+                                databaseReference.child(id).setValue(controle);
                                 dp.dismiss();
+                                finish();
                                 Toast.makeText(UploadActivity.this, "File Uploaded", Toast.LENGTH_SHORT).show();
                             }
                         });
@@ -137,7 +140,7 @@ public class UploadActivity extends AppCompatActivity {
                     @Override
                     public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
                         float percent = (100*snapshot.getBytesTransferred())/snapshot.getTotalByteCount();
-                        dp.setMessage("Uploaded :"+(int)percent+"%");
+                        dp.setMessage("Uploaded: "+(int)percent+"%");
                     }
                 });
     }

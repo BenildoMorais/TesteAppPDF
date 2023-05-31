@@ -32,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
      private UsuarioPofessor controle;
     private DatabaseReference databaseReference;
 
+    public static Boolean root; // Varialvel que controla o nivel de acesso
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -79,8 +81,10 @@ public class MainActivity extends AppCompatActivity {
                     try {
                         controle.getDisciplina().equals(""); // controla o tipo de usuario e o tipo de privilegios
                         binding.AdicionarPDF.setVisibility(View.VISIBLE);
+                        root = true;
                     }catch (NullPointerException e){
                         Usuario usuario = (Usuario) controle;
+                        root = false;
                     }
                 }
             }

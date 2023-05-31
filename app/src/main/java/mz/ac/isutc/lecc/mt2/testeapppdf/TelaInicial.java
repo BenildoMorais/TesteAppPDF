@@ -21,7 +21,6 @@ public class TelaInicial extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tela_inicial);
 
-
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {

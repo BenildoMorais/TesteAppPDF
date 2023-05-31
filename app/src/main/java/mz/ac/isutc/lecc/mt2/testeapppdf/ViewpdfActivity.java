@@ -31,6 +31,8 @@ public class ViewpdfActivity extends AppCompatActivity {
         String filename = getIntent().getStringExtra("filename");
         String fileurl = getIntent().getStringExtra("fileurl");
 
+        setTitle(filename);
+
         ProgressDialog pd = new ProgressDialog(this);
         pd.setTitle(filename);
         pd.setMessage("Abrindo...");
