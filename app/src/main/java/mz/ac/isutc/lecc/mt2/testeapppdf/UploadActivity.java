@@ -55,6 +55,7 @@ public class UploadActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 //                binding.fileImage.setVisibility(View.INVISIBLE);
+                binding.titulo.setText("");
 
             }
         });
@@ -62,7 +63,15 @@ public class UploadActivity extends AppCompatActivity {
         binding.btUpload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                processupload(filepath);
+                if (binding.titulo.getText().toString().trim().equals("")){
+                    Toast.makeText(UploadActivity.this, "Não o titulo em branco", Toast.LENGTH_SHORT).show();
+                }else {
+                    if (filepath != null) {
+                        processupload(filepath);
+                    }else{
+                        Toast.makeText(UploadActivity.this, "Escolha um PDF", Toast.LENGTH_SHORT).show();
+                    }
+                }
             }
         });
 
