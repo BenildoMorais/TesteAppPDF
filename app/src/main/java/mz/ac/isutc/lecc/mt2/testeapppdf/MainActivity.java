@@ -4,18 +4,22 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
@@ -100,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+    @SuppressLint("MissingInflatedId")
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
@@ -109,6 +114,40 @@ public class MainActivity extends AppCompatActivity {
             FirebaseAuth.getInstance().signOut();
             startActivity(new Intent(MainActivity.this, LoginActivity.class));
             finish();
+        }
+        if (id == R.id.sobre){
+            BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(MainActivity.this, R.style.BottomSheetStyle);
+            View sheetView = LayoutInflater.from(MainActivity.this).inflate(R.layout.sobre_o_projecto, null);
+            bottomSheetDialog.setContentView(sheetView);
+
+            LinearLayout dialogContainerInformacoes = sheetView.findViewById(R.id.dialog_container_informacoes);
+            bottomSheetDialog.show();
+        }
+
+        if (id == R.id.perfil){
+            BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(MainActivity.this, R.style.BottomSheetStyle);
+            View sheetView = LayoutInflater.from(MainActivity.this).inflate(R.layout.bottomdialog_perfil, null);
+            bottomSheetDialog.setContentView(sheetView);
+
+            @SuppressLint("MissingInflatedId")
+            LinearLayout dialogContainerInformacoes = sheetView.findViewById(R.id.dialog_container_perfil);
+            TextView username = sheetView.findViewById(R.id.username);
+            @SuppressLint("MissingInflatedId")
+            TextView email = sheetView.findViewById(R.id.email);
+            @SuppressLint("MissingInflatedId") TextView diciplina = sheetView.findViewById(R.id.disciplina);
+            @SuppressLint("MissingInflatedId") TextView telefone = sheetView.findViewById(R.id.telefone);
+            if (root){
+                sheetView.findViewById(R.id.layout_disciplina).setVisibility(View.VISIBLE);
+                sheetView.findViewById(R.id.layout_telefone).setVisibility(View.VISIBLE);
+                username.setText(controle.getUserName());
+                email.setText(controle.getEmail());
+                diciplina.setText(controle.getDisciplina());
+                telefone.setText(controle.getTelefone());
+            }else{
+                username.setText(usuario.getUserName());
+                email.setText(usuario.getEmail());
+            }
+            bottomSheetDialog.show();
         }
 
         return super.onOptionsItemSelected(item);
