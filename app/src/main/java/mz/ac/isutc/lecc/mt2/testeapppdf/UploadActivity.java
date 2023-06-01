@@ -46,7 +46,7 @@ public class UploadActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         // getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
+        setTitle("UPLOAD");
 
         storageReference = FirebaseStorage.getInstance().getReference();
         databaseReference = FirebaseDatabase.getInstance().getReference("MyDocments");
@@ -56,7 +56,6 @@ public class UploadActivity extends AppCompatActivity {
             public void onClick(View view) {
 //                binding.fileImage.setVisibility(View.INVISIBLE);
                 binding.titulo.setText("");
-
             }
         });
 

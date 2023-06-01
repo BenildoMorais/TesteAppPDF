@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -72,7 +73,7 @@ public class Myadapter extends FirebaseRecyclerAdapter<FileModel, Myadapter.myvi
                                 storageReference.child("uploads/"+id+".pdf").delete();
                                 Toast.makeText(view.getContext(), "Apagado com sucesso", Toast.LENGTH_SHORT).show();
                             }
-                        });   
+                        });
                     }else{
                         Toast.makeText(view.getContext(), "Não tem permissão para apagar esse ficheiro", Toast.LENGTH_SHORT).show();
                     }
