@@ -32,4 +32,12 @@
 
     <style name="Theme.TesteAppPDF.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="BottomSheetStyle" parent="Theme.Design.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/BottomSheetDialogTheme</item>
+    </style>
+
+    <style name="BottomSheetDialogTheme" parent="Widget.Design.BottomSheet.Modal">
+        <item name="background">@android:color/transparent</item>
+    </style>
+    
 </resources>

@@ -1,7 +1,7 @@
 package mz.ac.isutc.lecc.mt2.testeapppdf;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +17,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -62,25 +61,40 @@ public class Myadapter extends FirebaseRecyclerAdapter<FileModel, Myadapter.myvi
         });
         
         holder.layout.setOnLongClickListener(new View.OnLongClickListener() {
+            @SuppressLint("MissingInflatedId")
             @Override
             public boolean onLongClick(View view) {
 
-                if (MainActivity.root){
-                    if (model.getUsername().equals(MainActivity.controle.getUserName())){
-                        databaseReference.child("MyDocments").child(id).removeValue(new DatabaseReference.CompletionListener() {
-                            @Override
-                            public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
-                                storageReference.child("uploads/"+id+".pdf").delete();
-                                Toast.makeText(view.getContext(), "Apagado com sucesso", Toast.LENGTH_SHORT).show();
+                BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(view.getContext(), R.style.BottomSheetStyle);
+                View sheetView = LayoutInflater.from(view.getContext())
+                        .inflate(R.layout.bottomdialog, (LinearLayout)bottomSheetDialog.findViewById(R.id.dialog_container));
+                sheetView.findViewById(R.id.confirmar).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (MainActivity.root){
+                            if (model.getUsername().equals(MainActivity.controle.getUserName())){
+                                databaseReference.child("MyDocments").child(id).removeValue(new DatabaseReference.CompletionListener() {
+                                    @Override
+                                    public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
+                                        storageReference.child("uploads/"+id+".pdf").delete();
+                                        Toast.makeText(view.getContext(), "Apagado com sucesso", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                            }else{
+                                Toast.makeText(view.getContext(), "Não tem permissão para apagar esse ficheiro", Toast.LENGTH_SHORT).show();
                             }
-                        });
-                    }else{
-                        Toast.makeText(view.getContext(), "Não tem permissão para apagar esse ficheiro", Toast.LENGTH_SHORT).show();
+                        }
                     }
-                }
+                });
+
+                bottomSheetDialog.setContentView(sheetView);
+                bottomSheetDialog.show();
+
                 return true;
             }
         });
+
+
     }
 
     @Override
